@@ -20,3 +20,15 @@
 penultimate_element([Penultimate, _], Penultimate).  
 penultimate_element([_|Tail], Penultimate) :-  
     penultimate_element(Tail, Penultimate).
+% Define el predicado para encontrar el penúltimo elemento de una lista.
+penultimate(X, [X, _]).
+penultimate(X, [_|T]) :- penultimate(X, T).
+
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio2 :-
+    List = [1, 2, 3, 4],
+    penultimate(X, List),
+    format('El penúltimo elemento de la lista ~w es ~w.~n', [List, X]).
+
+% Ejecutar el predicado ejercicio2 al cargar el archivo.
+:- ejercicio2.

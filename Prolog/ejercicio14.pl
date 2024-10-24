@@ -13,4 +13,14 @@ dupli([H|T], [H,H|R]) :- dupli(T, R).
 
 % Ejemplo de uso:
 % ?- dupli([a, b, c], Result).
-% Result = [a, a, b, b, c, c].
+% Result = [a, a, b, b, c, c].dupli([], []).
+dupli([H|T], [H,H|R]) :- dupli(T, R).
+
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio14 :-
+    Input = [a, b, c, d],  % Cambia la lista para probar diferentes casos
+    dupli(Input, Duplicated),
+    format('La lista duplicada de ~w es ~w.~n', [Input, Duplicated]).
+
+% Ejecutar el predicado ejercicio14 al cargar el archivo.
+:- ejercicio14.

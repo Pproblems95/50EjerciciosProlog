@@ -9,9 +9,15 @@
 % def lsort(lst):
 %     return sorted(lst, key=len)
 % === código en prolog ===
-% Ordena una lista de listas de acuerdo con la longitud de las sublistas.
-lsort(L, S) :- map_list_to_pairs(length, L, P), keysort(P, SP), pairs_values(SP, S).
+ejercicio28 :-
+    % Definir la lista de listas a ordenar.
+    ListOfLists = [[a, b], [c], [d, e, f], [g, h]],
+    lsort(ListOfLists, SortedLists),
+    % Mostrar el resultado.
+    write('Listas ordenadas por longitud: '), write(SortedLists), nl.
 
-% Ejemplo de uso:
-% ?- lsort([[a], [a, b], [a, b, c], [a, b, c, d]], Sorted).
-% Sorted = [[a], [a, b], [a, b, c], [a, b, c, d]].
+% Ordena una lista de listas según su longitud.
+lsort(L, S) :-
+    map_list_to_pairs(length, L, P),  % Mapea las listas a pares de longitud y lista.
+    keysort(P, SP),                   % Ordena los pares por longitud.
+    pairs_values(SP, S).  

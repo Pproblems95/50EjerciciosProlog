@@ -26,4 +26,25 @@ is_palindrome(List) :-
 reverse_list([], []).  
 reverse_list([Head | Tail], Reversed) :-  
     reverse_list(Tail, ReversedTail),  
-    append(ReversedTail, [Head], Reversed).  
+    append(ReversedTail, [Head], Reversed).  reverse_list(L, R) :- reverse_list(L, [], R).
+
+% Caso base: cuando la lista original está vacía, el acumulador contiene la lista invertida.
+reverse_list([], Acc, Acc).
+
+% Caso recursivo: mueve el elemento de la cabeza al acumulador.
+reverse_list([H|T], Acc, R) :- reverse_list(T, [H|Acc], R).
+
+% Define el predicado para verificar si una lista es un palíndromo.
+palindrome(L) :- reverse_list(L, L).
+
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio6 :-
+    List = [a, b, c, b, a], % Cambia la lista para probar diferentes casos
+    (palindrome(List) ->
+        format('La lista ~w es un palíndromo.~n', [List])
+    ;
+        format('La lista ~w NO es un palíndromo.~n', [List])
+    ).
+
+% Ejecutar el predicado ejercicio6 al cargar el archivo.
+:- ejercicio6.

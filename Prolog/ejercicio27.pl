@@ -16,10 +16,22 @@
 %         return [comb[0]] + recursive_group(sizes[1:], rest)
 %     return recursive_group(sizes, elements)
 % === código en prolog ===
-% Agrupa los elementos de un conjunto en subconjuntos disjuntos dados los tamaños de los subgrupos.
-group([], [], []).
-group([N|Ns], Es, [G|Gs]) :- combination(N, Es, G), subtract(Es, G, Rest), group(Ns, Rest, Gs).
+ejercicio27 :-
+    % Definir la lista de tamaños de grupos y la lista de elementos.
+    GroupSizes = [2, 1],  % Tamaños de los grupos.
+    Elements = [a, b, c],  % Lista de elementos a agrupar.
+    group(GroupSizes, Elements, Groups),
+    % Mostrar el resultado.
+    write('Grupos formados: '), write(Groups), nl.
 
-% Ejemplo de uso:
-% ?- group([2, 3], [a, b, c, d, e], Result).
-% Result = [[a, b], [c, d, e]].
+% Agrupa elementos de la lista en grupos de tamaños dados.
+group([], [], []).
+group([N|Ns], Es, [G|Gs]) :- 
+    combination(N, Es, G), 
+    subtract(Es, G, Rest), 
+    group(Ns, Rest, Gs).
+
+% Define la combinación de elementos.
+combination(0, _, []).
+combination(K, [H|T], [H|Comb]) :- K > 0, K1 is K - 1, combination(K1, T, Comb).
+combination(K, [_|T], Comb) :- K > 0, combination(K, T, Comb).

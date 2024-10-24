@@ -19,6 +19,15 @@
 % print("y el ultimo elemento es ", lista[-1])
 
 % ----------- Codigo en Prolog ---------------
- last_element([Last], Last).  
- last_element([_|Tail], Last) :- 
-    last_element(Tail, Last).
+
+% Define el predicado para encontrar el último elemento de una lista.
+my_last(X, [X]).
+my_last(X, [_|T]) :- my_last(X, T).
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio1 :-
+    List = [1, 2, 3, 4],
+    my_last(X, List),
+    format('El último elemento de la lista ~w es ~w.~n', [List, X]).
+
+% Ejecutar el predicado ejercicio1 al cargar el archivo.
+:- ejercicio1.

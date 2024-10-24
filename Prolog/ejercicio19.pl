@@ -10,9 +10,30 @@
 %     n = n % len(lst)
 %     return lst[n:] + lst[:n]
 % === código en prolog ===
-% Rota una lista N lugares a la izquierda.
-rotate(L, N, R) :- length(L, Len), N1 is N mod Len, split(L, N1, L1, L2), append(L2, L1, R).
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio19 :-
+    % Definir la lista de entrada y el número de posiciones a rotar.
+    L = [a, b, c, d, e, f],
+    N = 2,
+    rotate(L, N, R),
+    % Mostrar el resultado de la rotación.
+    write('Lista original: '), write(L), nl,
+    write('Lista rotada: '), write(R), nl.
 
-% Ejemplo de uso:
-% ?- rotate([a, b, c, d, e], 2, Result).
-% Result = [c, d, e, a, b].
+% Rotar una lista N posiciones a la derecha.
+rotate(L, N, R) :-
+    length(L, Len),
+    N1 is N mod Len,
+    split(L, N1, L1, L2),
+    append(L2, L1, R).
+
+% Separar la lista en dos partes: L1 y L2.
+split(L, 0, [], L).
+split([H|T], N, [H|L1], L2) :-
+    N > 0,
+    N1 is N - 1,
+    split(T, N1, L1, L2).
+
+% Ejecutar el predicado ejercicio19 al cargar el archivo.
+:- ejercicio19.
+

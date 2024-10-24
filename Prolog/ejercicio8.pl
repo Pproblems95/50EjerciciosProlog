@@ -24,4 +24,20 @@ remove_consecutive([X, X | Tail], Result) :-
     remove_consecutive([X | Tail], Result).  
 remove_consecutive([X, Y | Tail], [X | Result]) :-  
     X \= Y,  
-    remove_consecutive([Y | Tail], Result).  
+    remove_consecutive([Y | Tail], Result).  % Comprime una lista eliminando los duplicados consecutivos.
+compress([], []).
+% Si queda un solo elemento, no hay duplicados.
+compress([X], [X]).
+% Caso recursivo: si el primer y segundo elemento son iguales, ignora el primero.
+compress([X,X|T], R) :- compress([X|T], R).
+% Si el primer y segundo elemento son distintos, conserva el primero.
+compress([X,Y|T], [X|R]) :- X \= Y, compress([Y|T], R).
+
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio8 :-
+    List = [a, a, b, c, c, c, d, d, e, a, a],  % Cambia la lista para probar diferentes casos
+    compress(List, Compressed),
+    format('La lista comprimida de ~w es ~w.~n', [List, Compressed]).
+
+% Ejecutar el predicado ejercicio8 al cargar el archivo.
+:- ejercicio8.

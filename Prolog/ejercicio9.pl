@@ -33,3 +33,23 @@ pack([X, X | Tail], [[X | Group] | PackedTail]) :-
 pack([X, Y | Tail], [[X] | PackedTail]) :-  
     X \= Y,  
     pack([Y | Tail], PackedTail).  
+% Agrupa los elementos consecutivos iguales en sublistas.
+pack([], []).
+% Caso recursivo: transfiere todos los elementos consecutivos iguales a una sublista.
+pack([X|Xs], [[X|Ys]|Zs]) :- transfer(X, Xs, Ys, Rest), pack(Rest, Zs).
+
+% Transfiere los elementos duplicados consecutivos a una sublista.
+transfer(X, [], [], []).
+% Si el siguiente elemento es diferente, termina la transferencia.
+transfer(X, [Y|Ys], [], [Y|Ys]) :- X \= Y.
+% Si el siguiente elemento es igual, agrégalo a la sublista.
+transfer(X, [X|Xs], [X|Ys], Rest) :- transfer(X, Xs, Ys, Rest).
+
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio9 :-
+    List = [a, a, b, c, c, c, d, d, e, a, a],  % Cambia la lista para probar diferentes casos
+    pack(List, Packed),
+    format('La lista empaquetada de ~w es ~w.~n', [List, Packed]).
+
+% Ejecutar el predicado ejercicio9 al cargar el archivo.
+:- ejercicio9.

@@ -10,9 +10,21 @@
 %     return list(range(i, k+1))
 % === código en prolog ===
 % Crea una lista con todos los enteros dentro de un rango dado.
-range(I, I, [I]).
-range(I, K, [I|R]) :- I < K, I1 is I + 1, range(I1, K, R).
+range(I, I, [I]).  % Caso base: rango de un solo número.
+range(I, K, [I|R]) :-  % Caso recursivo: agrega el inicio a la lista y continúa con el siguiente número.
+    I < K,
+    I1 is I + 1,
+    range(I1, K, R).
 
-% Ejemplo de uso:
-% ?- range(3, 7, Result).
-% Result = [3, 4, 5, 6, 7].
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio22 :-
+    % Definir los límites del rango.
+    I = 1,  % Inicio del rango.
+    K = 5,  % Fin del rango.
+    range(I, K, R),
+    % Mostrar el resultado.
+    write('Rango de '), write(I), write(' a '), write(K), write(': '), write(R), nl.
+
+% Ejecutar el predicado ejercicio22 al cargar el archivo.
+:- ejercicio22.
+

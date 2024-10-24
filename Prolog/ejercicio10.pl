@@ -24,14 +24,29 @@
   %      elementos_usados.add(elemento)  
 % print("Lista anidada con la notación [x, i]:", lista_anidada)
 % === codigo prolog ===
+% Agrupa los elementos consecutivos iguales en sublistas
+pack([], []).
+pack([X|Xs], [[X|Ys]|Zs]) :- transfer(X, Xs, Ys, Rest), pack(Rest, Zs).
 
-pack_count([], []).  
-pack_count([X], [[1, X]]).  
-pack_count([X, X | Tail], [[Count, X] | PackedTail]) :-  
-    Count is 2,  
-    pack_count([X | Tail], [[CountRest, X] | PackedTail]),  
-    CountRest > 1,  
-    Count is CountRest + 1.  
-pack_count([X, Y | Tail], [[1, X] | PackedTail]) :-  
-    X \= Y,  
-    pack_count([Y | Tail], PackedTail).  
+% Transfiere los elementos duplicados consecutivos a una sublista.
+transfer(X, [], [], []).
+transfer(X, [Y|Ys], [], [Y|Ys]) :- X \= Y.
+transfer(X, [X|Xs], [X|Ys], Rest) :- transfer(X, Xs, Ys, Rest).
+
+% Agrupa los elementos consecutivos iguales en sublistas y luego los transforma en parejas (N, X).
+encode(L, R) :- pack(L, P), transform(P, R).
+
+% Transforma sublistas en parejas (N, X), donde N es la cantidad de elementos.
+transform([], []).
+transform([[X|Xs]|Ys], [[N,X]|Zs]) :- length([X|Xs], N), transform(Ys, Zs).
+
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio10 :-
+    List = [a, a, b, c, c, c, d, d, e, a, a],  % Cambia la lista para probar diferentes casos
+    encode(List, Encoded),
+    format('La lista codificada de ~w es ~w.~n', [List, Encoded]).
+
+% Ejecutar el predicado ejercicio10 al cargar el archivo.
+:- ejercicio10.
+
+

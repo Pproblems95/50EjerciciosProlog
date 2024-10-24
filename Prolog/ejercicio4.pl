@@ -19,3 +19,16 @@ length_list([], 0).
 length_list([_|Tail], Length) :-  
     length_list(Tail, LengthTail),  
     Length is LengthTail + 1.  
+% Define el predicado para calcular la longitud de una lista.
+list_length([], 0).
+% Caso recursivo: la longitud es 1 más que la longitud de la cola.
+list_length([_|T], N) :- list_length(T, N1), N is N1 + 1.
+
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio4 :-
+    List = [a, b, c, d, e],
+    list_length(List, Length),
+    format('La longitud de la lista ~w es ~w.~n', [List, Length]).
+
+% Ejecutar el predicado ejercicio4 al cargar el archivo.
+:- ejercicio4.

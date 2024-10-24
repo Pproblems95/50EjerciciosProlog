@@ -33,3 +33,17 @@ flatten([Head | Tail], FlatList) :-
     append(FlatHead, FlatTail, FlatList).  
 flatten(Element, [Element]) :-  
     \+ is_list(Element).  
+my_flatten([], []).
+% Caso recursivo: si la cabeza es una lista, aplana la cabeza y la cola recursivamente.
+my_flatten([H|T], Flat) :- my_flatten(H, FH), my_flatten(T, FT), append(FH, FT, Flat).
+% Si la cabeza no es una lista, simplemente agrégala al resultado.
+my_flatten(X, [X]) :- X \= [], \+ is_list(X).
+
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio7 :-
+    List = [a, [b, c], [[d], e], f], % Cambia la lista para probar diferentes casos
+    my_flatten(List, Flat),
+    format('La lista aplanada de ~w es ~w.~n', [List, Flat]).
+
+% Ejecutar el predicado ejercicio7 al cargar el archivo.
+:- ejercicio7.

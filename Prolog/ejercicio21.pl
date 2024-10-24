@@ -13,6 +13,18 @@
 insert_at(X, L, 1, [X|L]).
 insert_at(X, [H|T], K, [H|R]) :- K > 1, K1 is K - 1, insert_at(X, T, K1, R).
 
-% Ejemplo de uso:
-% ?- insert_at(x, [a, b, c, d], 3, Result).
-% Result = [a, b, x, c, d].
+% Predicado principal que se ejecuta al cargar el archivo.
+ejercicio21 :-
+    % Definir la lista de entrada, el elemento a insertar y la posición.
+    L = [a, b, c, d],
+    X = z,  % Elemento a insertar.
+    K = 2,  % Posición donde se inserta el elemento.
+    insert_at(X, L, K, R),
+    % Mostrar el resultado.
+    write('Lista original: '), write(L), nl,
+    write('Elemento a insertar: '), write(X), nl,
+    write('Lista resultante: '), write(R), nl.
+
+% Ejecutar el predicado ejercicio21 al cargar el archivo.
+:- ejercicio21.
+
