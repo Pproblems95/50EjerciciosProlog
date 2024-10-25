@@ -11,9 +11,17 @@
 %         x, y = y, x % y
 %     return x
 % === código en prolog ===
-% Calcula el máximo común divisor usando el algoritmo de Euclides.
+% Definición del cálculo del máximo común divisor (GCD)
 gcd(X, 0, X) :- X > 0.
 gcd(X, Y, G) :- Y > 0, R is X mod Y, gcd(Y, R, G).
+
+% Predicado que será el punto de entrada para el Makefile
+ejercicio31 :- 
+    X = 48, 
+    Y = 18, 
+    gcd(X, Y, G),
+    format('El GCD de ~d y ~d es ~d~n', [X, Y, G]).
+
 
 % Ejemplo de uso:
 % ?- gcd(36, 24, G).

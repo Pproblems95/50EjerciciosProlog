@@ -1,6 +1,3 @@
-# Makefile para ejecutar los programas Prolog
-
-# Reglas para ejecutar cada ejercicio individualmente
 ejercicio1:
 	swipl -s ejercicio1.pl -g ejercicio1 -t halt
 
@@ -91,9 +88,67 @@ ejercicio29:
 ejercicio30:
 	swipl -s ejercicio30.pl -g ejercicio30 -t halt
 
-# Meta para ejecutar todos los ejercicios
-all: $(foreach n,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30,ejercicio$(n))
+ejercicio31:
+	swipl -s ejercicio31.pl -g ejercicio31 -t halt
 
-# Meta para limpiar (en caso de necesitar eliminar archivos generados)
+ejercicio32:
+	swipl -s ejercicio32.pl -g ejercicio32 -t halt
+
+ejercicio33:
+	swipl -s ejercicio33.pl -g ejercicio33 -t halt
+
+ejercicio34:
+	swipl -s ejercicio34.pl -g ejercicio34 -t halt
+
+ejercicio35:
+	swipl -s ejercicio35.pl -g ejercicio35 -t halt
+
+ejercicio36:
+	swipl -s ejercicio36.pl -g ejercicio36 -t halt
+
+ejercicio37:
+	swipl -s ejercicio37.pl -g ejercicio37 -t halt
+
+ejercicio38:
+	swipl -s ejercicio38.pl -g ejercicio38 -t halt
+
+ejercicio39:
+	swipl -s ejercicio39.pl -g ejercicio39 -t halt
+
+ejercicio40:
+	swipl -s ejercicio40.pl -g ejercicio40 -t halt
+
+ejercicio41:
+	swipl -s ejercicio41.pl -g ejercicio41 -t halt
+
+ejercicio42:
+	swipl -s ejercicio42.pl -g ejercicio42 -t halt
+
+ejercicio43:
+	swipl -s ejercicio43.pl -g ejercicio43 -t halt
+
+ejercicio44:
+	swipl -s ejercicio44.pl -g ejercicio44 -t halt
+
+ejercicio45:
+	swipl -s ejercicio45.pl -g ejercicio45 -t halt
+
+ejercicio46:
+	swipl -s ejercicio46.pl -g ejercicio46 -t halt
+
+ejercicio47:
+	swipl -s ejercicio47.pl -g ejercicio47 -t halt
+
+ejercicio48:
+	swipl -s ejercicio48.pl -g ejercicio48 -t halt
+
+ejercicio49:
+	swipl -s ejercicio49.pl -g ejercicio49 -t halt
+
+ejercicio50:
+	swipl -s ejercicio50.pl -g ejercicio50 -t halt
+
+all: $(foreach n,1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50,ejercicio$n)
+
 clean:
 	rm -f *.tmp
